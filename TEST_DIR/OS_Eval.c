@@ -1106,7 +1106,7 @@ void recv_test(struct timespec *timeArray, int iter, int *i) {
 
 int main(int argc, char *argv[])
 {
-	home = getenv("LEBENCH_DIR");
+	home = "/mydata/repo/LEBench/";
 	
 	output_fn = (char *)malloc(500*sizeof(char));
 	strcpy(output_fn, home);

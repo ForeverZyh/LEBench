@@ -12,7 +12,7 @@ DEBUG            = True
 GRUB_CFG_FILE    = '/boot/grub/grub.cfg'
 GRUB_FILE        = '/etc/default/grub' 
 
-WORKING_DIR      = ''
+WORKING_DIR      = '/mydata/repo/LEBench/'
 KERN_INDEX_FILE  = '/iteration' 
 LOCAL_GRUB_FILE  = '/grub'
 KERN_LIST_FILE   = '/kern_list' 
@@ -128,11 +128,6 @@ if __name__ == '__main__':
     if not os.geteuid() == 0:
         raise Exception('This script should be run with "sudo".')
 
-    try:
-        WORKING_DIR = os.environ['LEBENCH_DIR']
-    except:
-        raise ValueError('$LEBENCH_DIR is not set. Example: "/home/username/LEBench/".')
-
     if 'LEBench' not in WORKING_DIR:
         raise ValueError('$LEBENCH_DIR should point to the directory containing LEBench. Example: "/home/username/LEBench/".')
 
@@ -187,6 +182,6 @@ if __name__ == '__main__':
     if generate_grub_file(WORKING_DIR + 'template/grub', get_kern_list(next_kern_idx)):
         install_grub_file()
         if DEBUG: print '[DEBUG] Done configuring grub for the next kernel.'
-        restart()
+        #restart()
 
 
