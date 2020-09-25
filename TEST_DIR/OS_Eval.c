@@ -889,7 +889,7 @@ void context_switch_test(struct timespec *diffTime) {
 
 int msg_size = -1;
 int curr_iter_limit = -1;
-#define sock "/TEST_DIR/socket"
+#define sock "/mydata/repo/LEBench/TEST_DIR/socket"
 void send_test(struct timespec *timeArray, int iter, int *i) {
 	int retval;
 	int fds1[2], fds2[2];
@@ -1115,7 +1115,9 @@ int main(int argc, char *argv[])
 	new_output_fn = (char *)malloc(500*sizeof(char));
 	strcpy(new_output_fn, home);
 	strcat(new_output_fn, NEW_OUTPUT_FN);
-
+	if( access( sock, F_OK ) != -1 ) {
+  		remove(sock);
+ 	}
 	struct timespec startTime, endTime;
 	clock_gettime(CLOCK_MONOTONIC, &startTime);
 	if (argc != 3){printf("Invalid arguments, gave %d not 3",argc);return(0);}
